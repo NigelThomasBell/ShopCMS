@@ -5,38 +5,38 @@
 @inject UseCases.IViewCategoriesUseCase ViewCategoryUseCase
 @inject UseCases.IDeleteCategoryUseCase DeleteCategoryUseCase
 
-<h3>Manage Categories</h3>
-<br />
-@if (categories != null)
-{
+<div class="card w-100">
+    <div class="card-body">
+        <h2 class="mb-3">Edit Category</h2>
+        @if (categories != null)
+        {
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var category in categories)
-            {
-                <tr>
-                    <td>@category.Name</td>
-                    <td>@category.Description</td>
-                    <td>
-                        <button type="button" @onclick="@(() => EditCategory(category))" class="btn btn-link">Edit</button>
-                        <button type="button" @onclick="@(() => DeleteCategory(category.CategoryId))" class="btn btn-link">Delete</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-<br />
-<button type="button" @onclick="OnClickAddCategory" class="btn btn-primary">Add Category</button>
-
-
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in categories)
+                    {
+                        <tr>
+                            <td>@category.Name</td>
+                            <td>@category.Description</td>
+                            <td class="d-flex justify-content-end">
+                                <button type="button" @onclick="@(() => EditCategory(category))" class="btn btn-link">Edit</button>
+                                <button type="button" @onclick="@(() => DeleteCategory(category.CategoryId))" class="btn btn-link">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <button type="button" @onclick="OnClickAddCategory" class="btn btn-primary">Add Category</button>
+    </div>
+</div>
 
 @code {
 

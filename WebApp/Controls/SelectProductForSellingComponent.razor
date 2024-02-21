@@ -2,39 +2,59 @@
 @inject IViewProductsByCategoryId ViewProductsByCategoryId
 
 <div class="form-group">
-    <label for="category">Category</label>
-    <select id="category" @bind="SelectedCategoryId" class="form-control">
-        <option selected></option>
-        @foreach (var cat in categories)
-        {
-            <option value="@cat.CategoryId">@cat.Name</option>
-        }
-    </select>
+    <div class="card w-100">
+        <div class="card-body">
+            <h4 class="mb-3">Product Category</h4>
+            <select id="category" @bind="SelectedCategoryId" class="form-select">
+                <option selected></option>
+                @foreach (var cat in categories)
+                {
+                    <option value="@cat.CategoryId">@cat.Name</option>
+                }
+            </select>
+        </div>
+    </div>
 </div>
 @if (productsInCategory != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Prod Name</th>
-                <th>Qty Left</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var prod in productsInCategory)
+    <div class="card w-100">
+        <div class="card-body">
+            <h4 class="mb-3">Products</h4>
+            <h5 class="mb-3">@productsInCategory.Count() products</h5>
+            @if (productsInCategory.Count() > 0)
             {
-                <tr @onclick="@(() => OnSelectProduct(prod))" 
-                    style="@(prod.ProductId == selectedProductId?"background-color:beige; cursor:pointer;":"cursor:pointer")">
-                    <td>
-                        @prod.Name
-                    </td>
-                    <td>
-                        @prod.Quantity
-                    </td>
-                </tr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var prod in productsInCategory)
+                        {
+                            <tr @onclick="@(() => OnSelectProduct(prod))"
+                                style="@(prod.ProductId == selectedProductId?"background-color:beige; cursor:pointer;":"cursor:pointer")">
+                                <td>
+                                    <div class="d-flex flex-column justify-content-between align-items-center">
+										<img class="img-thumbnail img-fluid" src="images/placeholders/placeholder_product.png">
+										@prod.Name
+                                    </div>
+                                </td>
+                                <td>
+                                    $@prod.Price
+                                </td>
+                                <td>
+                                    @prod.Quantity
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             }
-        </tbody>
-    </table>
+        </div>
+    </div>
 }
 
 

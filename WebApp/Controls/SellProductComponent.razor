@@ -3,35 +3,41 @@
 
 @if (productToSell != null)
 {
-    @if (!string.IsNullOrWhiteSpace(errorMessage))
-    {
-        <div class="alert alert-danger">@errorMessage</div>
-    }
-    <EditForm Model="productToSell" OnValidSubmit="SellProduct">
-        <DataAnnotationsValidator></DataAnnotationsValidator>
-        <ValidationSummary></ValidationSummary>
+    <div class="form-group">
+        <div class="card w-100">
+            <div class="card-body">
+                @switch (true)
+                {
+                    case var _ when !string.IsNullOrWhiteSpace(errorMessage):
+                        <div class="alert alert-danger">@errorMessage</div>
+                        break;
 
-        <div class="form-group">
-            <label for="name">Product Name</label>
-            <input class="form-control" id="name" type="text" readonly value="@productToSell.Name" />
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input class="form-control" id="price" type="text" readonly value="@(string.Format("{0:c}", productToSell.Price))" />
-        </div>
-        <div class="form-group">
-            <label for="qty">Quantity</label>
-            <InputNumber id="qty" @bind-Value="@productToSell.Quantity" class="form-control"></InputNumber>
-        </div>
-        <button type="submit" class="btn btn-primary">Sell</button>
-    </EditForm>
+                    case var _ when !string.IsNullOrWhiteSpace(successMessage):
+                        <div class="alert alert-success">@successMessage</div>
+                        break;
 
+                    default:
+                        // Add any default case behavior if needed
+                        break;
+                }
+                <EditForm Model="productToSell" OnValidSubmit="SellProduct">
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <ValidationSummary></ValidationSummary>
 
+                    <div class="form-group mb-2">
+                        <label class="mb-2" for="qty">Quantity</label>
+                        <InputNumber id="qty" @bind-Value="@productToSell.Quantity" class="form-control"></InputNumber>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sell</button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
 }
 
 @code {
     private Product productToSell;
-    private string errorMessage;
+    private string errorMessage, successMessage;
 
     [Parameter]
     public string CashierName { get; set; }
@@ -80,11 +86,16 @@
         {
             OnProductSold.InvokeAsync(productToSell);
             errorMessage = string.Empty;
+            successMessage = "Sale successful.";
             SellProductUseCase.Execute(CashierName, productToSell.ProductId, productToSell.Quantity.Value);
+        }
+        else if (product.Quantity == 0)
+        {
+            errorMessage = $"{product.Name} is out of stock.";
         }
         else
         {
-            errorMessage = $"{product.Name} only has {product.Quantity} left. It is not enough.";
+            errorMessage = $"{product.Name} only has {product.Quantity} left.";
         }
     }
 

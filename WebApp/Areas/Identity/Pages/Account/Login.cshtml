@@ -3,74 +3,68 @@
 
 @{
     ViewData["Title"] = "Log in";
+    ViewData["Demo"] = "Demo accounts";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <script>
-        const demoButtonClicked = async (accountType) => {
-            let username, password;
-            switch (accountType) {
-                case 'Admin':
-                    username = 'admin@test.com';
-                    password = 'Apple_No5';
-                    break;
-                case 'Cashier':
-                    username = 'cashier@test.com';
-                    password = 'Apple_No5';
-                    break;
-                default:
-                    return;
-            }
-            document.getElementById('Input_Email').value = username;
-            document.getElementById('Input_Password').value = password;
+<script>
+    const demoButtonClicked = async (accountType) => {
+        let username, password;
+        switch (accountType) {
+            case 'Admin':
+                username = 'admin@test.com';
+                password = 'Apple_No5';
+                break;
+            case 'Cashier':
+                username = 'cashier@test.com';
+                password = 'Apple_No5';
+                break;
+            default:
+                return;
         }
-    </script>
+        document.getElementById('Input_Email').value = username;
+        document.getElementById('Input_Password').value = password;
+    }
+</script>
 
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group mb-3">
-                    <label htmlAttributes="{ id = "Input_Email" }" asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label htmlAttributes="{ id = " Input_Password" }" asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-primary" onclick="demoButtonClicked('Admin')">Demo Admin</button>
-                    <button type="submit" class="btn btn-primary" onclick="demoButtonClicked('Cashier')">Demo Cashier</button>
-                </div>
-                <div class="form-group mb-3">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
+<h2 class="mb-3">@ViewData["Title"]</h2>
+<form id="account" method="post">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group mb-3">
+        <label class="form-label" htmlAttributes="{ id = " Input_Email" }" asp-for="Input.Email">Username</label>
+		<input class="form-control" asp-for="Input.Email" />
+        <span class="text-danger" asp-validation-for="Input.Email"></span>
     </div>
-</div>
+    <div class="form-group mb-3">
+        <label class="form-label" htmlAttributes="{ id = " Input_Password" }" asp-for="Input.Password">Password</label>
+		<input class="form-control" asp-for="Input.Password" />
+        <span class="text-danger" asp-validation-for="Input.Password"></span>
+    </div>
+    <div class="form-group mb-3">
+        <div class="form-check">
+            <label class="form-check-label text-dark" asp-for="Input.RememberMe">
+                <input type="checkbox" class="form-check-input primary" asp-for="Input.RememberMe">
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </label>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <a class="fw-bold fs-4 mb-0" asp-page="./FeatureDisabled">Forgot Password?</a>
+    </div>
+    <div class="form-group mb-3">
+        <a class="fw-bold fs-4 mb-0" asp-page="./FeatureDisabled">Resend email confirmation</a>
+    </div>
+    <div class="form-group mb-3">
+        <button type="submit" class="btn btn-primary w-100 py-8 fs-4 rounded-2">Sign In</button>
+    </div>
+    <div class="form-group mb-1">
+        <a class="fw-bold fs-4 mb-0" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
+	</div>
+    <h2 class="mb-3">@ViewData["Demo"]</h2>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary mb-3" onclick="demoButtonClicked('Admin')">Demo Admin</button>
+        <button type="submit" class="btn btn-primary mb-3" onclick="demoButtonClicked('Cashier')">Demo Cashier</button>
+    </div>
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

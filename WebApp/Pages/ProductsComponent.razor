@@ -6,41 +6,44 @@
 @inject IGetCategoryByIdUseCase GetCategoryByIdUseCase
 @inject IDeleteProductUseCase DeleteProductUseCase
 
-<h3>Products</h3>
-<br />
-@if (products != null)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Product Category</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in products)
-            {
-                <tr>
-                    <td>@GetCategoryByIdUseCase.Execute(product.CategoryId.Value)?.Name</td>
-                    <td>@product.Name</td>
-                    <td>@(Math.Round(product.Price.Value, 2))</td>
-                    <td>@product.Quantity</td>
-                    <td>
-                        <button type="button" class="btn btn-link" @onclick="@(()=>OnEditProduct(product))">Edit</button>
-                        &nbsp;
-                        <button type="button" class="btn btn-link" @onclick="@(()=>OnDeleteProduct(product.ProductId))">Delete</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-<br />
-<button type="button" @onclick="OnClickAddProduct" class="btn btn-primary">Add Product</button>
 
+<div class="card w-100">
+    <div class="card-body">
+        <h2 class="mb-3">Products</h2>
+        @if (products != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Category</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in products)
+                    {
+                        <tr>
+                            <td>@GetCategoryByIdUseCase.Execute(product.CategoryId.Value)?.Name</td>
+                            <td>@product.Name</td>
+                            <td>@(Math.Round(product.Price.Value, 2))</td>
+                            <td>@product.Quantity</td>
+                            <td>
+                                <button type="button" class="btn btn-link" @onclick="@(()=>OnEditProduct(product))">Edit</button>
+                                &nbsp;
+                                <button type="button" class="btn btn-link" @onclick="@(()=>OnDeleteProduct(product.ProductId))">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <br />
+        <button type="button" @onclick="OnClickAddProduct" class="btn btn-primary">Add Product</button>
+    </div>
+</div>
 
 @code {
 

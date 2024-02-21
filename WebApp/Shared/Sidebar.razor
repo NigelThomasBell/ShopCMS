@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+
+<aside class="left-sidebar">
+    <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="" class="text-nowrap logo-img">
+                <img src="images/logos/logo.svg" width="180" alt="ShopCMS logo" />
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                <i class="ti ti-x fs-8"></i>
+            </div>
+        </div>
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+                <!--HOME-->
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Home</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-dashboard"></i>
+                        </span>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+                <!--ACCOUNT-->
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">ACCOUNT</span>
+                </li>
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="Identity/Account/Logout" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-logout"></i>
+                                </span>
+                                <span class="hide-menu">Logout</span>
+                            </a>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="Identity/Account/Login" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-login"></i>
+                                </span>
+                                <span class="hide-menu">Login</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="Identity/Account/Register" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-user-plus"></i>
+                                </span>
+                                <span class="hide-menu">Register</span>
+                            </a>
+                        </li>
+                    </NotAuthorized>
+                </AuthorizeView>
+                <!--OTHER-->
+                <AuthorizeView>
+                    <Authorized>
+                        <!--CASHIER-->
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">CASHIER</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="cashier_console" aria-expanded="false">
+                                <span>
+                                    <!--<i class="ti ti-article"></i>-->
+                                </span>
+                                <span class="hide-menu">Cashier Console</span>
+                            </a>
+                        </li>
+                        <!--ADMIN-->
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">ADMIN</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="categories" aria-expanded="false">
+                                <span>
+                                    <!--<i class="ti ti-article"></i>-->
+                                </span>
+                                <span class="hide-menu">Categories</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="products" aria-expanded="false">
+                                <span>
+                                    <!--<i class="ti ti-article"></i>-->
+                                </span>
+                                <span class="hide-menu">Products</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="transactions" aria-expanded="false">
+                                <span>
+                                    <!--<i class="ti ti-article"></i>-->
+                                </span>
+                                <span class="hide-menu">Reports</span>
+                            </a>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+
+                    </NotAuthorized>
+                </AuthorizeView>
+            </ul>
+        </nav>
+    </div>
+</aside>

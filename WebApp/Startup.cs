@@ -33,7 +33,6 @@ namespace WebApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
             services.AddDbContext<MarketContext>(options =>
             {
