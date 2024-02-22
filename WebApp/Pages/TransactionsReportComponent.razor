@@ -36,28 +36,28 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="text-right">Date Time</th>
-                            <th class="text-right">Cashier Name</th>
-                            <th class="text-right">Product Name</th>
-                            <th class="text-right">Qty Before</th>
-                            <th class="text-right">Qty Sold</th>
-                            <th class="text-right">Qty After</th>
-                            <th class="text-right">Unit Price</th>
-                            <th class="text-right">Product Subtotal</th>
+                            <th class="text-end">Date Time</th>
+                            <th class="text-end">Cashier Name</th>
+                            <th class="text-end">Product Name</th>
+                            <th class="text-end">Qty Before</th>
+                            <th class="text-end">Qty Sold</th>
+                            <th class="text-end">Qty After</th>
+                            <th class="text-end">Unit Price</th>
+                            <th class="text-end">Product Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var tran in transactions)
                         {
                             <tr>
-                                <td class="text-right">@tran.TimeStamp.ToString("yyyy-MM-dd hh:mm")</td>
-                                <td class="text-right">@tran.CashierName</td>
-                                <td class="text-right">@tran.ProductName</td>
-                                <td class="text-right">@tran.BeforeQty</td>
-                                <td class="text-right">@tran.SoldQty</td>
-                                <td class="text-right">@(tran.BeforeQty - tran.SoldQty)</td>
-                                <td class="text-right">@(string.Format("{0:c}", tran.Price))</td>
-                                <td class="text-right">@(string.Format("{0:c}", tran.SoldQty * tran.Price))</td>
+                                <td class="text-end">@tran.TimeStamp.ToString("yyyy-MM-dd hh:mm")</td>
+                                <td class="text-end">@tran.CashierName</td>
+                                <td class="text-end">@tran.ProductName</td>
+                                <td class="text-end">@tran.BeforeQty</td>
+                                <td class="text-end">@tran.SoldQty</td>
+                                <td class="text-end">@(tran.BeforeQty - tran.SoldQty)</td>
+                                <td class="text-end">@(string.Format("{0:c}", tran.Price))</td>
+                                <td class="text-end">@(string.Format("{0:c}", tran.SoldQty * tran.Price))</td>
                             </tr>
                         }
                     </tbody>

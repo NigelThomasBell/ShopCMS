@@ -1,23 +1,25 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.Components.Authorization
 
-<div class="card">
-    <div class="card-body">
-        <AuthorizeView>
-            <Authorized>
-                @{
-                    // Get the user name from the email
-                    string userName = @context.User.Identity.Name;
-                    int atIndex = userName.IndexOf('@');
-                    string substringBeforeAt = atIndex >= 0 ? userName.Substring(0, atIndex) : userName;
-                }
-                <h1 class="mb-2">Welcome to ShopCMS, @substringBeforeAt!</h1>
-                <h3 class="mb-0">Empowering your e-commerce experience!</h3>
-            </Authorized>
-            <NotAuthorized>
-                <h1 class="mb-2">Welcome to ShopCMS!</h1>
-                <h3 class="mb-0">Empowering your e-commerce experience!</h3>
-            </NotAuthorized>
-        </AuthorizeView>
+<div class="home-main">
+    <div class="card">
+        <div class="card-body">
+            <AuthorizeView>
+                <Authorized>
+                    @{
+                        // Get the user name from the email
+                        string userName = @context.User.Identity.Name;
+                        int atIndex = userName.IndexOf('@');
+                        string substringBeforeAt = atIndex >= 0 ? userName.Substring(0, atIndex) : userName;
+                    }
+                    <h1 class="mb-2">Welcome to ShopCMS, @substringBeforeAt!</h1>
+                    <h3 class="mb-0">Empowering your e-commerce experience!</h3>
+                </Authorized>
+                <NotAuthorized>
+                    <h1 class="mb-2">Welcome to ShopCMS!</h1>
+                    <h3 class="mb-0">Empowering your e-commerce experience!</h3>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
     </div>
 </div>

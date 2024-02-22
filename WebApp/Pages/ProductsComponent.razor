@@ -6,7 +6,6 @@
 @inject IGetCategoryByIdUseCase GetCategoryByIdUseCase
 @inject IDeleteProductUseCase DeleteProductUseCase
 
-
 <div class="card w-100">
     <div class="card-body">
         <h2 class="mb-3">Products</h2>
@@ -30,7 +29,7 @@
                             <td>@product.Name</td>
                             <td>@(Math.Round(product.Price.Value, 2))</td>
                             <td>@product.Quantity</td>
-                            <td>
+                            <td class="d-flex justify-content-end">
                                 <button type="button" class="btn btn-link" @onclick="@(()=>OnEditProduct(product))">Edit</button>
                                 &nbsp;
                                 <button type="button" class="btn btn-link" @onclick="@(()=>OnDeleteProduct(product.ProductId))">Delete</button>

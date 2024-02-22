@@ -1,6 +1,7 @@
 ﻿@page "/cashier_console"
 @attribute [Authorize(Policy = "CashierOnly")]
 
+
 <h2 class="mb-3">Cashier Console</h2>
 <h5 class="mb-3"><b>User: </b>@cashierName</h5>
 @if (!string.IsNullOrWhiteSpace(cashierName))
