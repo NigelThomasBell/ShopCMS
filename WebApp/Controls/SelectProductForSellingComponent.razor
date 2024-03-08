@@ -20,7 +20,7 @@
     <div class="card w-100">
         <div class="card-body">
             <h4 class="mb-3">Products</h4>
-            <h5 class="mb-3">@productsInCategory.Count() products</h5>
+            <h5 class="mb-3">@productsInCategory.Count() @(productsInCategory.Count() == 1 ? "product" : "products")</h5>
             @if (productsInCategory.Count() > 0)
             {
                 <table class="table">

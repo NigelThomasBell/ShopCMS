@@ -61,10 +61,10 @@
                         </li>
                     </NotAuthorized>
                 </AuthorizeView>
-                <!--OTHER-->
-                <AuthorizeView>
+
+				<!--CASHIER-->
+                <AuthorizeView Policy="CashierOnly">
                     <Authorized>
-                        <!--CASHIER-->
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">CASHIER</span>
@@ -77,7 +77,12 @@
                                 <span class="hide-menu">Cashier Console</span>
                             </a>
                         </li>
-                        <!--ADMIN-->
+                    </Authorized>
+                </AuthorizeView>
+
+                <!--ADMIN-->
+                <AuthorizeView Policy="AdminOnly">
+                    <Authorized>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">ADMIN</span>
@@ -107,9 +112,6 @@
                             </a>
                         </li>
                     </Authorized>
-                    <NotAuthorized>
-
-                    </NotAuthorized>
                 </AuthorizeView>
             </ul>
         </nav>
