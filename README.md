@@ -44,7 +44,7 @@ NOTE: These steps are accurate as of March 2024. Over time, certain tasks may ch
 
 ### Step 1: Software installation and workload setup
 1. Install the following software:
-    * Microsoft SQL Server Management Studio (SMSS)
+    * Microsoft SQL Server Management Studio (SSMS)
         * Version 19.3 was used during development.
     * Microsoft Visual Studio
         * Community 2022, Version 17.9.0 was used during development.
@@ -154,7 +154,7 @@ NOTE: These steps are accurate as of March 2024. Over time, certain tasks may ch
 1. In Visual Studio, run the web app, and go to the __Register__ link. 
     1. Create two accounts: one with ``admin@test.com`` as the email and one with ``cashier@test.com`` as the email. If the password is invalid, the web app will provide feedback on what needs to be fixed for a valid password. An example of a valid password is ``Apple_No5``.
     2. After successfully creating an account, a page with the heading of __Register confirmation__ will appear. Click the __Click here to confirm your account__ link. This mimics a confirmation email being sent and accessed in order to confirm the account.
-2. Open SQL Server Management Studio (SMSS). It will display a __Connect to Server__ dialog box.
+2. Open SQL Server Management Studio (SSMS). It will display a __Connect to Server__ dialog box.
     1. Inside the __Connect to Server__ dialog box.
         * Set __Server type__ to ``Database Engine``.
         * Set __Server name__ to the  ``Server=tcp:`` value from the connection string. It will look something like this: ``example.database.windows.net``.
@@ -179,10 +179,10 @@ NOTE: These steps are accurate as of March 2024. Over time, certain tasks may ch
                 1. Within __Firewall rules__
                     * Click __Add your client IPv4 address (your address)__
                 2. Click the __Save__ button
-            4. Going back to SQL Server Management Studio (SMSS)
+            4. Going back to SQL Server Management Studio (SSMS)
                 1. On the __New Firewall Rule__ dialog box, click __Cancel__. 
                 2. On the __Connect to Server__ dialog box, click __Connect__. 
-3. After logging in, go to __Object Explorer__ in SMSS:
+3. After logging in, go to __Object Explorer__ in SSMS:
     1. Expand the objects in the following order: 
         * Server name (looks something like this: ``example.database.windows.net``.)
         * ``Databases``
